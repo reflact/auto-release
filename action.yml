@@ -1,0 +1,44 @@
+name: "auto-release"
+author: "Reflact AG"
+description: "Automatically release a new version of your project"
+
+inputs:
+  tag:
+    description: "Select the tag to release (major, minor, patch)"
+    required: true
+  github_token:
+    description: "The GitHub token to use for authentication"
+    required: true
+  tag_name:
+    description: "The name of the tag"
+  release_title:
+    description: "The title of the release"
+  release_body:
+    description: "The body of the release"
+  draft:
+    description: "Whether the release is a draft (default: false)"
+    default: "false"
+  prerelease:
+    description: "Whether the release is a prerelease (default: false)"
+    default: "false"
+  commit:
+    description: "The commit to release (default: ${{ github.sha }})"
+  delete_existed_release:
+    description: "Whether to delete the existed release (default: false)"
+    default: "false"
+  gen_release_notes:
+    description: "Whether to generate release notes (default: false)"
+    default: "false"
+
+
+outputs:
+  release_id:
+    description: "The ID of the release"
+  url:
+    description: "The URL of the release"
+  upload_url:
+    description: "The URL to upload assets to"
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
