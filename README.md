@@ -50,15 +50,15 @@ The schema will be v[major].[minor].[patch]
 
 ### `release_id`
 
-(Outpu: String) The newly created release with schema v[major].[minor].[patch].
+(Output: String) The newly created release with schema v[major].[minor].[patch].
 
 ### `url`
 
-(Outpu: String) URL to the newly created release.
+(Output: String) URL to the newly created release.
 
 ### `upload_url`
 
-(Outpu: String) Upload URL for assets to the newly created release.
+(Output: String) Upload URL for assets to the newly created release.
 
 ## Example usage
 
