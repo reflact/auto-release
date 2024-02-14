@@ -5,7 +5,7 @@ The schema will be v[major].[minor].[patch]
 
 ## Inputs
 
-### `tag`
+### `autogen_tag`
 
 **Required** (Input: String) Set the change of the release. Accepted values: major, minor, patch, none. Each option exept 'none' will increase the version number at the given position. If the number reach 10 in patch and minor the number will be set to 0 and minor or major will be increased (example: v1.0.10 -> v1.1.0). 'none' will skip the autogeneration of a new version so that a individual version number can bei set.
 
