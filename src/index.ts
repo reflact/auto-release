@@ -7,7 +7,7 @@ try {
     const tag_name: string = core.getInput('tag_name');
     let releaseName: string = core.getInput('release_title') || tag;
     let releaseBody: string = core.getInput('release_body');
-    const generateReleaseNotes: boolean = core.getBooleanInput('gen_release_notes');
+    const generateReleaseNotes: boolean = core.getBooleanInput('generate_release_notes');
     const draft: boolean = core.getBooleanInput('draft');
     const prerelease: boolean = core.getBooleanInput('prerelease');
     const secret: string = core.getInput('github_token');
