@@ -3,7 +3,7 @@ author: "Reflact AG"
 description: "Automatically release a new version of your project"
 
 inputs:
-  tag:
+  autogen_tag:
     description: "Select the tag to release (major, minor, patch)"
     required: true
   github_token:
