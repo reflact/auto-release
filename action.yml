@@ -26,7 +26,7 @@ inputs:
   delete_existed_release:
     description: "Whether to delete the existed release (default: false)"
     default: "false"
-  gen_release_notes:
+  generate_release_notes:
     description: "Whether to generate release notes (default: false)"
     default: "false"
 
