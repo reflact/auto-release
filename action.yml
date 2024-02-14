@@ -1,4 +1,4 @@
-name: "auto-release"
+name: "autogen-release"
 author: "Reflact AG"
 description: "Automatically release a new version of your project"
 
