@@ -3,6 +3,13 @@
 This action creates an release with various options.
 The schema will be v[major].[minor].[patch]
 
+Features:
+- Create a release according the given input of major, minor or patch
+- Create a release according a individual input (schema: vX.X.X)
+- If no release is published jet, it will create the first release with tag v1.0.0
+- Delete a release and recreate it with new assets.
+- Generate release notes (title and body) for a new release (will add contributions at the end)
+
 ## Inputs
 
 ### `autogen_tag`
