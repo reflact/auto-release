@@ -132,7 +132,7 @@ try {
         }).then(
             (release) => {
                 core.info(`Release ${tag_name} created successfully!`);
-                core.setOutput('release_id', release.data.id.toString());
+                core.setOutput('release_tag', release.data.tag_name);
                 core.setOutput('url', release.data.html_url);
                 core.setOutput('upload_url', release.data.upload_url);
             },

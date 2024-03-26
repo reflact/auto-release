@@ -55,7 +55,7 @@ Features:
 
 ## Outputs
 
-### `release_id`
+### `release_tag`
 
 (Output: String) The newly created release with schema v[major].[minor].[patch].
 
