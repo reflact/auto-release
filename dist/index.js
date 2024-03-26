@@ -30630,48 +30630,48 @@ try {
     let release_exist = false;
     let new_tag_name = '';
     let current_release = '';
+    await token.rest.repos.getLatestRelease({
+        owner: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.owner,
+        repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo
+    }).then((latest_release) => {
+        current_release = latest_release.data.tag_name;
+    }, (error) => {
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info('No latest release found: ' + error);
+        new_tag_name = 'v1.0.0';
+    });
     if (tag === 'major' || tag === 'minor' || tag === 'patch') {
-        await token.rest.repos.getLatestRelease({
-            owner: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.owner,
-            repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo
-        }).then((latest_release) => {
-            current_release = latest_release.data.tag_name;
-            const latest_tag_without_v = current_release.slice(1);
-            const latest_tag_split = latest_tag_without_v.split('.');
-            let major = parseInt(latest_tag_split[0]);
-            let minor = parseInt(latest_tag_split[1]);
-            let patch = parseInt(latest_tag_split[2]);
-            if (tag === 'major') {
+        const latest_tag_without_v = current_release.slice(1);
+        const latest_tag_split = latest_tag_without_v.split('.');
+        let major = parseInt(latest_tag_split[0]);
+        let minor = parseInt(latest_tag_split[1]);
+        let patch = parseInt(latest_tag_split[2]);
+        if (tag === 'major') {
+            major++;
+            minor = 0;
+            patch = 0;
+        }
+        else if (tag === 'minor') {
+            if (minor === 10) {
                 major++;
                 minor = 0;
                 patch = 0;
             }
-            else if (tag === 'minor') {
-                if (minor === 10) {
-                    major++;
-                    minor = 0;
-                    patch = 0;
-                }
-                else {
-                    minor++;
-                    patch = 0;
-                }
+            else {
+                minor++;
+                patch = 0;
             }
-            else if (tag === 'patch') {
-                if (patch === 10) {
-                    minor++;
-                    patch = 0;
-                }
-                else {
-                    patch++;
-                }
+        }
+        else if (tag === 'patch') {
+            if (patch === 10) {
+                minor++;
+                patch = 0;
             }
-            new_tag_name = `v${major}.${minor}.${patch}`;
-            _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`New tag_name: ${new_tag_name}`);
-        }, (error) => {
-            _actions_core__WEBPACK_IMPORTED_MODULE_0__.info('No latest release found: ' + error);
-            new_tag_name = 'v1.0.0';
-        });
+            else {
+                patch++;
+            }
+        }
+        new_tag_name = `v${major}.${minor}.${patch}`;
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`New tag_name: ${new_tag_name}`);
     }
     else if (tag === 'none') {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.info('Skipped autogenerate tag. No tag_flag provided.');
@@ -30693,10 +30693,10 @@ try {
                             repo: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo.repo,
                             release_id: release.id
                         });
-                        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Release ${tag} deleted`);
+                        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Release ${tag_name} deleted`);
                     }
                     else {
-                        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Release ${tag} already existed`);
+                        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Release ${tag_name} already existed`);
                         _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('release_id', release.id.toString());
                         _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('url', release.html_url);
                         _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('upload_url', release.upload_url);
@@ -30716,6 +30716,7 @@ try {
             tag_name: tag_name === '' ? new_tag_name : tag_name,
             previous_tag_name: current_release !== '' ? current_release : undefined
         }).then((release_notes) => {
+            _actions_core__WEBPACK_IMPORTED_MODULE_0__.info('Release notes generated successfully!');
             releaseName = release_notes.data.name;
             releaseBody = release_notes.data.body;
         }, (error) => {
@@ -30733,7 +30734,8 @@ try {
             draft,
             prerelease
         }).then((release) => {
-            _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('release_id', release.data.id.toString());
+            _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Release ${tag_name} created successfully!`);
+            _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('release_tag', release.data.tag_name);
             _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('url', release.data.html_url);
             _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput('upload_url', release.data.upload_url);
         }, (error) => {
