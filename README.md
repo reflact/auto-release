@@ -1,6 +1,6 @@
 # auto-release action
 
-This action creates an release with various options.
+This action creates a release with various options.
 The schema will be v[major].[minor].[patch]
 
 Features:
@@ -14,7 +14,7 @@ Features:
 
 ### `autogen_tag`
 
-**Required** (Input: String) Set the change of the release. Accepted values: major, minor, patch, none. Each option exept 'none' will increase the version number at the given position. If the number reach 10 in patch and minor the number will be set to 0 and minor or major will be increased (example: v1.0.10 -> v1.1.0). 'none' will skip the autogeneration of a new version so that a individual version number can bei set.
+**Required** (Input: String) Set the new version tag. Accepted values: major, minor, patch, none. Each option except 'none' will increase the version number at the given position. If the number reaches 10 in patch or minor the number will be set to 0 and minor or major will be increased (example: v1.0.10 -> v1.1.0). 'none' will skip the autogeneration of a new version so that a individual version number can bei set.
 
 ### `github_token`
 
@@ -22,7 +22,7 @@ Features:
 
 ### `tag_name`
 
-(Input: String) Individual tag of a release. Can be a new or existend tag and is used in combination with other options.
+(Input: String) Individual tag of a release. Can be a new or existend tag and can be used in combination with other options.
 
 ### `release_title`
 
@@ -34,11 +34,11 @@ Features:
 
 ### `draft`
 
-(Input: Boolean) Set the generated release to draft.
+(Input: Boolean) Set the generated release as draft.
 
 ### `prerelease`
 
-(Input: Boolean) Set the generated release to prerelease.
+(Input: Boolean) Set the generated release as prerelease.
 
 ### `commit`
 
@@ -50,22 +50,22 @@ Features:
 
 ### `generate_release_notes`
 
-(Input: Boolean) If the release notes shall be auto generated.
+(Input: Boolean) Auto-generate release notes.
 
 
 ## Outputs
 
 ### `release_tag`
 
-(Output: String) The newly created release with schema v[major].[minor].[patch].
+(Output: String) The new release tag with schema v[major].[minor].[patch].
 
 ### `url`
 
-(Output: String) URL to the newly created release.
+(Output: String) URL to the new release tag.
 
 ### `upload_url`
 
-(Output: String) Upload URL for assets to the newly created release.
+(Output: String) Upload URL for assets to the new release tag.
 
 ## Example usage
 
