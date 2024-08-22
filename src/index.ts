@@ -11,7 +11,7 @@ try {
     const draft: boolean = core.getBooleanInput('draft');
     const prerelease: boolean = core.getBooleanInput('prerelease');
     const secret: string = core.getInput('github_token');
-    const delete_and_replace_release: boolean = core.getBooleanInput('delete_existed_release');
+    const delete_and_replace_release: boolean = core.getBooleanInput('delete_existing_release');
 
     const token = github.getOctokit(secret);
 
@@ -85,7 +85,7 @@ try {
                             });
                             core.info(`Release ${tag_name} deleted`);
                         } else {
-                            core.info(`Release ${tag_name} already existed`);
+                            core.info(`Release ${tag_name} does already exist`);
                             core.setOutput('release_id', release.id.toString());
                             core.setOutput('url', release.html_url);
                             core.setOutput('upload_url', release.upload_url);

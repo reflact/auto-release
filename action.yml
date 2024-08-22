@@ -23,8 +23,8 @@ inputs:
     default: "false"
   commit:
     description: "The commit to release (default: github.sha)"
-  delete_existed_release:
-    description: "Whether to delete the existed release (default: false)"
+  delete_existing_release:
+    description: "Whether to delete the existing release (default: false)"
     default: "false"
   generate_release_notes:
     description: "Whether to generate release notes (default: false)"
