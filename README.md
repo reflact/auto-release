@@ -44,7 +44,7 @@ Features:
 
 (Input: String) Individual commit message on creating a release
 
-### `delete_existed_release`
+### `delete_existing_release`
 
 (Input: Boolean) Indicates if the given release in tag_name should be deleted and recreated.
 
@@ -105,7 +105,7 @@ on:
         description: 'Create a prerelease'
         type: boolean
         default: false
-      delete_existed_release:
+      delete_existing_release:
         description: 'Delete release'
         type: boolean
         default: false
@@ -128,6 +128,6 @@ on:
           draft: ${{ github.event.inputs.draft }}
           prerelease: ${{ github.event.inputs.prerelease }}
           commit: ${{ github.event.inputs.commit }}
-          delete_existed_release: ${{ github.event.inputs.delete_existed_release }}
+          delete_existing_release: ${{ github.event.inputs.delete_existing_release }}
           generate_release_notes: ${{ github.event.inputs.generate_release_notes }}
 ```
